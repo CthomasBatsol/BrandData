@@ -1,0 +1,2 @@
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Debug\Battery-Recognition.exe
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Debug\Battery-Recognition.pdb

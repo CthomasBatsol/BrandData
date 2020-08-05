@@ -1,0 +1,14 @@
+﻿  Battery-Recognition.cpp
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(47,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(13,13): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(75,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(85,90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(102,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(104,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(106,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Coding Projects\Battery-Recognition\Image.h(108,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
