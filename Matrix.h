@@ -63,10 +63,7 @@ public:
 	}
 
 	~Matrix() {
-<<<<<<< HEAD
 		std::cout << "Matrix Dtor" << std::endl;
-=======
->>>>>>> 6ccc32f9dc3b8abdd2fb0fa1aa29a490dfce46ea
 		for (int i = 0; i < width; i++)
  			delete[] data[i];
 		

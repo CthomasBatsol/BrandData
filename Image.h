@@ -10,15 +10,7 @@ class Image {
 public:
 	Image(char* filename)
 	{
-<<<<<<< HEAD
 		FILE* f = fopen(filename, "rb");
-=======
-	
-		char path[] = "test/";
-		char* folder = path;
-		char* file = strcat(folder, filename);
-		FILE* f = fopen(file, "rb");
->>>>>>> 6ccc32f9dc3b8abdd2fb0fa1aa29a490dfce46ea
 		unsigned char info[54];
 		
 
@@ -60,11 +52,8 @@ public:
 		delete[] data;
 		
 	}
-<<<<<<< HEAD
 	
 	
-=======
->>>>>>> 6ccc32f9dc3b8abdd2fb0fa1aa29a490dfce46ea
 
 	void Image_print() {
 		std::cout << "42 4D" << std::endl;
@@ -230,10 +219,7 @@ public:
 	}
 
 	~Image() {
-<<<<<<< HEAD
 		std::cout << "Image Dtor" << std::endl;
-=======
->>>>>>> 6ccc32f9dc3b8abdd2fb0fa1aa29a490dfce46ea
 		delete mat;
 		delete dct_mat;
 	}
