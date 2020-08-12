@@ -13,13 +13,9 @@ C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(104,13): warning
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(106,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(108,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(110,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,68): error C2143: syntax error: missing ')' before ';'
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,69): error C2059: syntax error: '='
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,95): error C2059: syntax error: ')'
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,97): error C2143: syntax error: missing ';' before '{'
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,97): error C2447: '{': missing function header (old-style formal list?)
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(68,35): error C2660: 'iteration': function does not take 3 arguments
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(24,6): message : see declaration of 'iteration'
+C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(32,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(35,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(43,17): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Image_tests.cpp
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
@@ -44,3 +40,6 @@ C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix_tests.cpp(42,26):
 C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix_tests.cpp(54,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   unit_test_framework.cpp
   Generating Code...
+Image_tests.obj : error LNK2005: _main already defined in Battery-Recognition.obj
+Matrix_tests.obj : error LNK2005: _main already defined in Battery-Recognition.obj
+C:\Users\cthomas\Documents\Projects\Battery-Recognition\Debug\cv.exe : fatal error LNK1169: one or more multiply defined symbols found

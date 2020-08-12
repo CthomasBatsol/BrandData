@@ -143,7 +143,7 @@ public:
 	}
 
 	void Image_nnda() {
-
+		 
 	}
 
 	void Image_write(std::ofstream& output, std::string& name) {
@@ -190,10 +190,12 @@ public:
 
 	void Image_print_dct() {
 		for (int i = 0; i < 16; i++) {
-			for (int j = 0; j < 18 ; j += 3) {
-				std::cout << "[" << dct_mat->Matrix_at(j, i) << " " << dct_mat->Matrix_at(j+1, i) << " " << dct_mat->Matrix_at(j+2,i) << "] ";
+			std::cout << "[ ";
+			for (int j = 0; j < 16 ; j+=4) {
+				std::cout << dct_mat->Matrix_at(j, i) << " " << dct_mat->Matrix_at(j+1, i) << " " << dct_mat->Matrix_at(j+2,i) <<" "<< dct_mat->Matrix_at(j+3,i) << " ";
 			}
-			std::cout << std::endl;
+			
+			std::cout << "]" << std::endl;
 		}
 	}
 	
@@ -219,7 +221,6 @@ public:
 	}
 
 	~Image() {
-		std::cout << "Image Dtor" << std::endl;
 		delete mat;
 		delete dct_mat;
 	}

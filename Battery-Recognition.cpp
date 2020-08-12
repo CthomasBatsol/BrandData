@@ -20,8 +20,7 @@ namespace fs = std::filesystem;
 ****************************************************************************/
 
 
-void iteration(const fs::path& pathToShow, vector<char*> brands ,vector<Image*>& container, Image* img, char arr[]) {
-    int count = 0;
+void construct_training(const fs::path& pathToShow,vector<string>& brands,vector<Image*>& container, Image* img, char arr[]) {
     string begin = arr;
     string end;
   
@@ -40,38 +39,45 @@ void iteration(const fs::path& pathToShow, vector<char*> brands ,vector<Image*>&
                 const auto filenameStr = file.path().filename().string();
                 char* bmp = new char[begin.length() + filenameStr.length()+1];
                 end = begin + filenameStr;
+                brands.push_back(end);
                 strcpy(bmp, end.c_str());
-                brands.push_back(bmp);
-                cout << brands[count] << endl;
-                img = new Image(brands[count]);
+           
+                cout << bmp << endl;
+                
+                img = new Image(bmp);
                 container.push_back(img);
-                ++count;
                 delete[] bmp;
                 
             }
+            cout << endl;
 
-            delete[] folder;
-            delete[] temp;
-            begin = arr;
+        delete[] folder;
+        delete[] temp;
+        begin = arr;
     }
    
 }
 
-void print_dct(vector<Image*> container) {
-    for (long unsigned int i = 0; i < container.size(); i++) {
-        cout << "Image: " << i + 1 << endl;
-        container[i]->Image_DCT();
-        container[i]->Image_print_dct();
-    }
+void construct_testing(char arr[],vector<string> container) {
+        
 }
 
-void destroy(vector<Image*> container_1,vector<char*> container_2) {
+
+
+void dct(vector<Image*> container,vector<string> name) {
+
+     for (long unsigned int i = 0; i < container.size(); i++) {
+         container[i]->Image_DCT();
+         cout << name[i] << endl;
+         container[i]->Image_print_dct();
+         cout << endl << endl;
+     }
+}
+
+void destroy(vector<Image*> container_1) {
+    
     for (long unsigned int i = 0; i < container_1.size(); i++){
         delete container_1[i];
-    }
-
-    for (long unsigned int i = 0; i < container_2.size(); i++) {
-        delete container_2[i];
     }
 
 }
@@ -82,11 +88,11 @@ int main(int argc, char* argv[])
     const fs::path pathToShow{ argc >= 2 ? argv[1] : fs::current_path() };
     Image* img = NULL;
     vector<Image*> images;
-    vector<char*> location;
+    vector<string> location;
 
-    iteration(pathToShow,location,images,img,argv[1]);
-    print_dct(images);
-    destroy(images,location);
+    construct_training(pathToShow,location,images,img,argv[1]);
+    dct(images,location);
+    destroy(images);
     return 0;
 }
 
