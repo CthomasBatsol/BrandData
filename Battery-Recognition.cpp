@@ -5,6 +5,7 @@
 #include <fstream>
 #include "Image.h"
 #include <filesystem>
+#include <cmath>
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -42,14 +43,14 @@ void construct_training(const fs::path& pathToShow,vector<string>& brands,vector
                 brands.push_back(end);
                 strcpy(bmp, end.c_str());
            
-                cout << bmp << endl;
+                //cout << bmp << endl;
                 
                 img = new Image(bmp);
                 container.push_back(img);
                 delete[] bmp;
                 
             }
-            cout << endl;
+            //cout << endl;
 
         delete[] folder;
         delete[] temp;
@@ -58,20 +59,31 @@ void construct_training(const fs::path& pathToShow,vector<string>& brands,vector
    
 }
 
-void construct_testing(char arr[],vector<string> container) {
-        
+void print(vector<Image*>& container) {
+    for (long unsigned int i = 0; i < 1; i++) {
+        container[i]->Image_print_dct();
+    }
+    cout << endl;
 }
 
-
-
-void dct(vector<Image*> container,vector<string> name) {
+void dct(Image* test,vector<Image*>& container,vector<string> name) {
 
      for (long unsigned int i = 0; i < container.size(); i++) {
          container[i]->Image_DCT();
-         cout << name[i] << endl;
-         container[i]->Image_print_dct();
-         cout << endl << endl;
      }
+     test->Image_DCT();
+}
+
+void nnda(vector<Image*>& train,Image* test) {
+    int temp = 0;
+    for (long unsigned int i = 0; i < train.size(); i++) {
+        for (int j = 0; j < 16; j++) {
+            for (int k = 0; k < 16; k++) {
+                temp = pow(test->Image_at(k, j) - train[i]->Image_at(k, j),2);
+                train[i]->fill(k, j, temp);
+            }
+        }
+    }
 }
 
 void destroy(vector<Image*> container_1) {
@@ -89,10 +101,16 @@ int main(int argc, char* argv[])
     Image* img = NULL;
     vector<Image*> images;
     vector<string> location;
-
-    construct_training(pathToShow,location,images,img,argv[1]);
-    dct(images,location);
+    Image* test = new Image(argv[2]);
+    
+    construct_training(pathToShow, location, images, img, argv[1]);
+    dct(test,images,location);
+    print(images);
+    nnda(images, test);
+    print(images);
     destroy(images);
+    delete test;
+    
     return 0;
 }
 

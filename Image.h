@@ -142,9 +142,14 @@ public:
 	
 	}
 
-	void Image_nnda() {
-		 
+	int Image_at(int column,int row) {
+		return dct_mat->Matrix_at(column,row);
 	}
+
+	void fill(int column,int row,int value) {
+		dct_mat->Matrix_fill(column, row, value);
+	}
+
 
 	void Image_write(std::ofstream& output, std::string& name) {
 		output.open(name);
