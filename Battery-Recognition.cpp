@@ -6,6 +6,8 @@
 #include "Image.h"
 #include <filesystem>
 #include <cmath>
+#include <map>
+#include <iterator>
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -21,16 +23,18 @@ namespace fs = std::filesystem;
 ****************************************************************************/
 
 
-void construct_training(const fs::path& pathToShow,vector<string>& brands,vector<Image*>& container, Image* img, char arr[]) {
+/*void construct_training(const fs::path& pathToShow,vector<string>& brands,vector<Image*>& container, Image*& img, char arr[]) {
     string begin = arr;
     string end;
-  
+    
+
     for (const auto& entry : fs::directory_iterator(pathToShow)) {
         const auto foldernameStr = entry.path().filename().string();
         char* folder = new char[foldernameStr.length()+1];
         
         strcpy(folder,foldernameStr.c_str());                
         begin = begin + folder + '/';
+        
         char* temp = new char[begin.length() + 1];
         strcpy(temp, begin.c_str());
         
@@ -42,21 +46,54 @@ void construct_training(const fs::path& pathToShow,vector<string>& brands,vector
                 end = begin + filenameStr;
                 brands.push_back(end);
                 strcpy(bmp, end.c_str());
-           
-                //cout << bmp << endl;
-                
+              
                 img = new Image(bmp);
                 container.push_back(img);
                 delete[] bmp;
                 
             }
-            //cout << endl;
 
         delete[] folder;
         delete[] temp;
         begin = arr;
     }
    
+}*/
+
+void construct_training(const fs::path& pathToShow, map<string,Image*>& data, Image*& img, char arr[]) {
+    string begin = arr;
+    string end;
+
+
+    for (const auto& entry : fs::directory_iterator(pathToShow)) {
+        const auto foldernameStr = entry.path().filename().string();
+        char* folder = new char[foldernameStr.length() + 1];
+
+        strcpy(folder, foldernameStr.c_str());
+        begin = begin + folder + '/';
+
+        char* temp = new char[begin.length() + 1];
+        strcpy(temp, begin.c_str());
+
+        const fs::path pathToFile{ temp };
+
+        for (const auto& file : fs::directory_iterator(pathToFile)) {
+            const auto filenameStr = file.path().filename().string();
+            char* bmp = new char[begin.length() + filenameStr.length() + 1];
+            end = begin + filenameStr;
+            strcpy(bmp, end.c_str());
+            img = new Image(bmp);
+            data.insert(pair<string, Image*>(bmp, img));
+            
+            delete[] bmp;
+
+        }
+
+        delete[] folder;
+        delete[] temp;
+        begin = arr;
+    }
+
 }
 
 void print(vector<Image*>& container) {
@@ -66,32 +103,41 @@ void print(vector<Image*>& container) {
     cout << endl;
 }
 
-void dct(Image* test,vector<Image*>& container,vector<string> name) {
-
-     for (long unsigned int i = 0; i < container.size(); i++) {
-         container[i]->Image_DCT();
-     }
-     test->Image_DCT();
+void dct(Image*& test, map<string,Image*>& data) {
+    map<string, Image*>::iterator itr;
+    for (itr = data.begin(); itr != data.end();++itr) {
+        itr->second->Image_DCT();
+    }
+    
+    test->Image_DCT();
 }
 
-void nnda(vector<Image*>& train,Image* test) {
+void nnda(Image*& test, map<string,Image*>& data) {
     int temp = 0;
-    for (long unsigned int i = 0; i < train.size(); i++) {
+    float sum = 0;
+    map<string, float> values;
+   
+    for (map<string, Image*>::iterator itr = data.begin(); itr != data.end(); itr++) {
+        sum = 0;
         for (int j = 0; j < 16; j++) {
             for (int k = 0; k < 16; k++) {
-                temp = pow(test->Image_at(k, j) - train[i]->Image_at(k, j),2);
-                train[i]->fill(k, j, temp);
+                temp = pow(test->Image_at(k, j) - itr->second->Image_at(k, j), 2);
+                sum = sum + temp;
             }
         }
+        values.insert(pair<string, float>(itr->first, sqrt(sum)));
+    }
+
+    for (map<string, float>::iterator itr = values.begin(); itr != values.end(); ++itr) {
+        
     }
 }
 
-void destroy(vector<Image*> container_1) {
-    
-    for (long unsigned int i = 0; i < container_1.size(); i++){
-        delete container_1[i];
+void destroy(map<string,Image*>& data) {
+    map<string, Image*>::iterator itr;
+    for (itr = data.begin(); itr != data.end();++itr) {
+        delete itr->second;
     }
-
 }
 
 
@@ -99,16 +145,13 @@ int main(int argc, char* argv[])
 {
     const fs::path pathToShow{ argc >= 2 ? argv[1] : fs::current_path() };
     Image* img = NULL;
-    vector<Image*> images;
-    vector<string> location;
     Image* test = new Image(argv[2]);
+    map<string, Image*> data;
     
-    construct_training(pathToShow, location, images, img, argv[1]);
-    dct(test,images,location);
-    print(images);
-    nnda(images, test);
-    print(images);
-    destroy(images);
+    construct_training(pathToShow, data, img, argv[1]);
+    dct(test,data);
+    nnda(test,data);
+    destroy(data);
     delete test;
     
     return 0;
