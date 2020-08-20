@@ -10,6 +10,7 @@ class Image {
 public:
 	Image(char* filename)
 	{
+		
 		FILE* f = fopen(filename, "rb");
 		unsigned char info[54];
 		
@@ -149,7 +150,7 @@ public:
 	void fill(int column,int row,int value) {
 		dct_mat->Matrix_fill(column, row, value);
 	}
-
+	
 
 	void Image_write(std::ofstream& output, std::string& name) {
 		output.open(name);
@@ -228,6 +229,7 @@ public:
 	~Image() {
 		delete mat;
 		delete dct_mat;
+		
 	}
 	 
 
@@ -237,6 +239,7 @@ private:
 	int height;
 	Matrix* mat;
 	Matrix* dct_mat;
+	
 
 };
 
