@@ -67,53 +67,7 @@ void dct(Image*& test, multimap<Image*, string>& data) {
     test->Image_DCT();
 }
 
-void nnda(Image*& test, multimap<Image*, string>& data) {
-    int temp = 0;
-    float sum = 0;
-    float x_E = 1000000;
-    float x_I = 1000000;
-    multimap<float,string> values;
-    multimap<float, string> extraClass,intraClass;
 
-   
-    for (multimap<Image*,string>::iterator itr = data.begin(); itr != data.end(); itr++) {
-        sum = 0;
-        for (int j = 0; j < 16; j++) {
-            for (int k = 0; k < 16; k++) {
-                temp = pow(test->Image_at(k, j) - itr->first->Image_at(k, j), 2);
-                sum = sum + temp;
-            }
-        }
-        values.insert(pair<float,string>(sqrt(sum),itr->second));
-        
-    }
-
-    for (multimap<float,string>::iterator itr_1 = values.begin(); itr_1 != values.end(); ++itr_1) {
-        for (multimap<float, string>::iterator itr_2 = values.begin(); itr_2 != values.end(); ++itr_2) {
-            if (itr_1->second.compare(itr_2->second) == 0) {
-                if (itr_1->first > itr_2->first) {
-                    x_I = itr_2->first;
-                }
-            }
-            else {
-                if (itr_1->first > itr_2->first) {
-                    x_E = itr_2->first;
-                }
-            }
-        }
-        intraClass.insert(pair<float, string>(x_I, itr_1->second));
-        extraClass.insert(pair<float, string>(x_E, itr_1->second));
-  }
-
-    
-    for (multimap<float, string>::iterator itr_1 = extraClass.begin(); itr_1 != extraClass.end(); ++itr_1) {
-        cout << itr_1->second << ": " << itr_1->first << endl;
-    }
-    cout << endl << endl;
-    for (multimap<float, string>::iterator itr_1 = intraClass.begin(); itr_1 != intraClass.end(); ++itr_1) {
-        cout << itr_1->second << ": " << itr_1->first << endl;
-    }
-}
 
 void destroy(multimap<Image*,string>& data) {
     map<Image*,string>::iterator itr;
@@ -132,7 +86,7 @@ int main(int argc, char* argv[])
     
     construct_training(pathToShow, data, img, argv[1]);
     dct(test,data);
-    nnda(test,data);
+    neighbors(test,data);
     
     destroy(data);
     delete test;
