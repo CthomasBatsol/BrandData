@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "Image.h"
+#include "NNDA.h"
 #include <filesystem>
 #include <cmath>
 #include <map>
@@ -22,7 +23,7 @@ namespace fs = std::filesystem;
 *                                                                           *
 ****************************************************************************/
 
-void construct_training(const fs::path& pathToShow, multimap<Image*,string>& data, Image*& img, char arr[]) {
+void construct_training(const fs::path& pathToShow, multimap<Image*,string>& data_1, Image*& img, char arr[]) {
     string begin = arr;
     string end;
 
@@ -45,7 +46,7 @@ void construct_training(const fs::path& pathToShow, multimap<Image*,string>& dat
             end = begin + filenameStr;
             strcpy(bmp, end.c_str());
             img = new Image(bmp);
-            data.insert(pair<Image*,string>(img,folder));
+            data_1.insert(pair<Image*,string>(img,folder));
             
             delete[] bmp;
 
@@ -58,20 +59,17 @@ void construct_training(const fs::path& pathToShow, multimap<Image*,string>& dat
 
 }
 
-void dct(Image*& test, multimap<Image*, string>& data) {
+void dct(Image*& test, multimap<Image*, string>& data_1) {
     map<Image*,string>::iterator itr;
-    for (itr = data.begin(); itr != data.end();++itr) {
+    for (itr = data_1.begin(); itr != data_1.end();++itr) {
         itr->first->Image_DCT();
     }
-    
     test->Image_DCT();
 }
 
-
-
-void destroy(multimap<Image*,string>& data) {
+void destroy(multimap<Image*,string>& data_1) {
     map<Image*,string>::iterator itr;
-    for (itr = data.begin(); itr != data.end();++itr) {
+    for (itr = data_1.begin(); itr != data_1.end();++itr) {
         delete itr->first;
     }
 }
@@ -83,10 +81,13 @@ int main(int argc, char* argv[])
     Image* img = NULL;
     Image* test = new Image(argv[2]);
     multimap<Image*, string> data;
+    nnda classify;
     
     construct_training(pathToShow, data, img, argv[1]);
     dct(test,data);
-    neighbors(test,data);
+    classify.nnda_neighbors(test, data);
+    classify.nnda_distances(data);
+    classify.print();
     
     destroy(data);
     delete test;
