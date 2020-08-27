@@ -23,10 +23,11 @@ namespace fs = std::filesystem;
 *                                                                           *
 ****************************************************************************/
 
-void construct_training(const fs::path& pathToShow, multimap<Image*,string>& data_1, Image*& img, char arr[]) {
+vector<nnda*> construct_training(const fs::path& pathToShow, multimap<Image*,string>& data, Image*& img, char arr[],Image* & test) {
     string begin = arr;
     string end;
-
+    nnda *classify;
+    vector<nnda*> classes;
 
     for (const auto& entry : fs::directory_iterator(pathToShow)) {
         const auto foldernameStr = entry.path().filename().string();
@@ -46,31 +47,35 @@ void construct_training(const fs::path& pathToShow, multimap<Image*,string>& dat
             end = begin + filenameStr;
             strcpy(bmp, end.c_str());
             img = new Image(bmp);
-            data_1.insert(pair<Image*,string>(img,folder));
-            
-            delete[] bmp;
+            data.insert(pair<Image*, string>(img, bmp));
+            classify = new nnda(data, img, bmp, folder);
+            classes.push_back(classify);
 
+            delete[] bmp;
         }
 
         delete[] folder;
         delete[] temp;
         begin = arr;
     }
-
+    return classes;
 }
 
-void dct(Image*& test, multimap<Image*, string>& data_1) {
-    map<Image*,string>::iterator itr;
-    for (itr = data_1.begin(); itr != data_1.end();++itr) {
+
+void dct(Image*& test, multimap<Image*, string>& data) {
+    for (multimap<Image*, string>::iterator itr = data.begin(); itr != data.end(); ++itr) {
         itr->first->Image_DCT();
     }
     test->Image_DCT();
 }
 
-void destroy(multimap<Image*,string>& data_1) {
-    map<Image*,string>::iterator itr;
-    for (itr = data_1.begin(); itr != data_1.end();++itr) {
+void destroy(multimap<Image*, string>& data,vector<nnda*> classes ){
+    for (multimap<Image*, string>::iterator itr = data.begin(); itr != data.end(); ++itr) {
         delete itr->first;
+    }
+
+    for (int i = 0; i < classes.size(); i++) {
+        delete classes[i];
     }
 }
 
@@ -81,15 +86,12 @@ int main(int argc, char* argv[])
     Image* img = NULL;
     Image* test = new Image(argv[2]);
     multimap<Image*, string> data;
-    nnda classify;
-    
-    construct_training(pathToShow, data, img, argv[1]);
-    dct(test,data);
-    classify.nnda_neighbors(test, data);
-    classify.nnda_distances(data);
-    classify.print();
-    
-    destroy(data);
+    vector<nnda*> container;
+
+    container = construct_training(pathToShow, data, img, argv[1], test);
+    dct(test, data);
+
+    destroy(data,container);
     delete test;
     
     return 0;
