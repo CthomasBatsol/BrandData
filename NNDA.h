@@ -9,29 +9,21 @@
 class nnda {
 public:
     
-    nnda(std::multimap<Image*, std::string>& data,Image*& img, char*& location,char*& brand) {
-    
-        img = new Image(location);
-        img->Image_DCT();
-        delta_I.insert(std::pair<Image*, std::string>(img, brand));
-        delta_E.insert(std::pair<Image*, std::string>(img, brand));
-        
-    }
+    nnda() {}
 
-
-
-    void nnda_neighbors(Image*& test, std::multimap<Image*, std::string>& data) {
+    void nnda_neighbors(std::multimap<std::string,Image*>& data, Image*& test) {
         int temp = 0; float sum = 0; float x_E = 0; float x_I = 0;
 
-        for (std::multimap<Image*, std::string>::iterator itr = data.begin(); itr != data.end(); itr++) {
+        for (std::multimap<std::string, Image*>::iterator itr = data.begin(); itr != data.end(); itr++) {
             sum = 0;
             for (int j = 0; j < 16; j++) {
                 for (int k = 0; k < 16; k++) {
-                    temp = pow(test->Image_at(k, j) - itr->first->Image_at(k, j), 2);
+                    temp = pow(test->Image_at(k, j) - itr->second->Image_at(k, j), 2);
                     sum = sum + temp;
                 }
             }
-            values.insert(std::pair<float, std::string>(sqrt(sum), itr->second));
+            values.insert(std::pair<float, std::string>(sqrt(sum), itr->first));
+
         }
 
         for (std::multimap<float, std::string>::iterator itr_1 = values.begin(); itr_1 != values.end(); ++itr_1) {
@@ -66,11 +58,11 @@ public:
     void nnda_distances() {
         
         for (std::multimap<std::string, float>::iterator itr_1 = extraClass.begin(); itr_1 != extraClass.end(); itr_1++) {
-            for (std::multimap<Image*, std::string>::iterator itr_2 = delta_E.begin(); itr_2 != delta_E.end(); itr_2++) {
-                if (itr_2->second.compare(itr_1->first) != 0) {
+            for (std::multimap<std::string, Image*>::iterator itr_2 = delta_E.begin(); itr_2 != delta_E.end(); itr_2++) {
+                if (itr_2->first.compare(itr_1->first) != 0) {
                     for (int i = 0; i < 16; i++) {
                         for (int j = 0; j < 16; j++) {
-                            itr_2->first->fill(j, i, itr_2->first->Image_at(j, i) - itr_1->second);
+                            itr_2->second->fill(j, i, itr_2->second->Image_at(j, i) - itr_1->second);
                         }
                     }
                 }
@@ -78,11 +70,11 @@ public:
         }
 
         for (std::multimap<std::string, float>::iterator itr_1 = intraClass.begin(); itr_1 != intraClass.end(); itr_1++) {
-            for (std::multimap<Image*, std::string>::iterator itr_2 = delta_I.begin(); itr_2 != delta_I.end(); itr_2++) {
-                if (itr_2->second.compare(itr_1->first) == 0) {
+            for (std::multimap<std::string, Image*>::iterator itr_2 = delta_I.begin(); itr_2 != delta_I.end(); itr_2++) {
+                if (itr_2->first.compare(itr_1->first) == 0) {
                     for (int i = 0; i < 16; i++) {
                         for (int j = 0; j < 16; j++) {
-                            itr_2->first->fill(j, i, itr_2->first->Image_at(j, i) - itr_1->second);
+                            itr_2->second->fill(j, i, itr_2->second->Image_at(j, i) - itr_1->second);
                         }
                     }
                 }
@@ -92,48 +84,24 @@ public:
     }
 
     void print() {
-        std::multimap<Image*, std::string>::iterator itr_1 = delta_E.begin();
-        std::multimap<Image*, std::string>::iterator itr_2 = delta_I.begin();
-        std::multimap<std::string, float>::iterator itr_3 = extraClass.begin();
-        std::multimap<std::string, float>::iterator itr_4 = intraClass.begin();
-
-        while (itr_1 != delta_E.end() && itr_2 != delta_I.end( )&& itr_3 != extraClass.end() && itr_4 != intraClass.end()) {
-            std::cout << "Extra Class: " << std::endl;
-            std::cout << itr_3->first << ": " << itr_3->second << std::endl;
-            std::cout << itr_1->second << ": " << std::endl;
-            itr_1->first->Image_print_dct();
-            std::cout << std::endl;
-            
-            std::cout << "Intra Class: " << std::endl; 
-            std::cout << itr_4->first << ": " << itr_4->second << std::endl;
-            std::cout << itr_2->second << ": " << std::endl;
-            itr_2->first->Image_print_dct();
-            std::cout << std::endl;
-            
-            itr_1 = delta_E.end();
-            itr_2 = delta_I.end();
-            itr_3 = extraClass.end();
-            itr_4 = intraClass.end();
-        }
+    
     }
 
     ~nnda() {
         
-        for (std::multimap<Image*, std::string>::iterator itr = delta_E.begin(); itr != delta_E.end(); ++itr) {
-            delete itr->first;
+        for (std::multimap<std::string, Image*>::iterator itr = delta_I.begin(); itr != delta_I.end(); ++itr) {
+            delete itr->second;
         }
-        for (std::multimap<Image*, std::string>::iterator itr = delta_I.begin(); itr != delta_I.end(); ++itr) {
-            delete itr->first;
-        }
+   
     }
 
 private:
     std::multimap<float, std::string> values;
     std::multimap<std::string, float> extraClass;
     std::multimap<std::string, float> intraClass;
-    std::multimap<Image*,std::string> delta_E;
-    std::multimap<Image*,std::string> delta_I;
-    
+    std::multimap<std::string, Image*> delta_E;
+    std::multimap<std::string, Image*> delta_I;
+
 };
 
 

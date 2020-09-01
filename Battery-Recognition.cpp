@@ -23,11 +23,9 @@ namespace fs = std::filesystem;
 *                                                                           *
 ****************************************************************************/
 
-vector<nnda*> construct_training(const fs::path& pathToShow, multimap<Image*,string>& data, Image*& img, char arr[],Image* & test) {
+void construct_training(const fs::path& pathToShow, Image*& img, multimap<string,Image*>& data, multimap<char*,Image*> locations, char arr[]) {
     string begin = arr;
     string end;
-    nnda *classify;
-    vector<nnda*> classes;
 
     for (const auto& entry : fs::directory_iterator(pathToShow)) {
         const auto foldernameStr = entry.path().filename().string();
@@ -47,9 +45,8 @@ vector<nnda*> construct_training(const fs::path& pathToShow, multimap<Image*,str
             end = begin + filenameStr;
             strcpy(bmp, end.c_str());
             img = new Image(bmp);
-            data.insert(pair<Image*, string>(img, bmp));
-            classify = new nnda(data, img, bmp, folder);
-            classes.push_back(classify);
+            data.insert(pair<string, Image*>(folder, img));
+            locations.insert(pair<char*, Image*>(bmp, img));
 
             delete[] bmp;
         }
@@ -58,26 +55,13 @@ vector<nnda*> construct_training(const fs::path& pathToShow, multimap<Image*,str
         delete[] temp;
         begin = arr;
     }
-    return classes;
+    
 }
+ 
 
 
-void dct(Image*& test, multimap<Image*, string>& data) {
-    for (multimap<Image*, string>::iterator itr = data.begin(); itr != data.end(); ++itr) {
-        itr->first->Image_DCT();
-    }
-    test->Image_DCT();
-}
 
-void destroy(multimap<Image*, string>& data,vector<nnda*> classes ){
-    for (multimap<Image*, string>::iterator itr = data.begin(); itr != data.end(); ++itr) {
-        delete itr->first;
-    }
 
-    for (int i = 0; i < classes.size(); i++) {
-        delete classes[i];
-    }
-}
 
 
 int main(int argc, char* argv[])
@@ -85,15 +69,13 @@ int main(int argc, char* argv[])
     const fs::path pathToShow{ argc >= 2 ? argv[1] : fs::current_path() };
     Image* img = NULL;
     Image* test = new Image(argv[2]);
-    multimap<Image*, string> data;
-    vector<nnda*> container;
+    nnda classify;
+    multimap<string, Image*> data;
+    multimap<char*, Image*> locations;
 
-    container = construct_training(pathToShow, data, img, argv[1], test);
-    dct(test, data);
+    construct_training(pathToShow, img, data, locations, argv[1]);
 
-    destroy(data,container);
     delete test;
-    
     return 0;
 }
 
