@@ -1,45 +1,69 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Battery-Recognition.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Battery-Recognition.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Battery-Recognition.cpp
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(47,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(13,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(77,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(87,90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(104,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(106,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(108,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(110,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(32,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(35,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Battery-Recognition.cpp(43,17): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(48,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(14,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(78,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(88,90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(105,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(107,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(109,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(111,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(151,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,14): error C2065: 'multimap': undeclared identifier
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,28): error C2275: 'std::string': illegal use of this type as an expression
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13): message : see declaration of 'std::string'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,1): error C2059: syntax error: '>'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,45): error C2039: 'iterator': is not a member of '`global namespace''
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,76): error C2065: 'itr': undeclared identifier
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,97): error C2065: 'itr': undeclared identifier
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(13,1): error C2059: syntax error: ')'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(14,56): error C2065: 'itr': undeclared identifier
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(14,68): error C2065: 'itr': undeclared identifier
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(14,81): error C2059: syntax error: ';'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(16,5): error C2059: syntax error: '}'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(16,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(18,80): error C2143: syntax error: missing ';' before '{'
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(18,80): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(69,85): warning C4244: 'argument': conversion from '_Ty2' to 'int', possible loss of data
+          with
+          [
+              _Ty2=float
+          ]
+C:\Users\cthomas\Documents\Projects\battery-recognition\NNDA.h(81,85): warning C4244: 'argument': conversion from '_Ty2' to 'int', possible loss of data
+          with
+          [
+              _Ty2=float
+          ]
+C:\Users\cthomas\Documents\Projects\battery-recognition\Battery-Recognition.cpp(34,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\battery-recognition\Battery-Recognition.cpp(38,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\battery-recognition\Battery-Recognition.cpp(46,13): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Image_tests.cpp
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(47,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(13,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(77,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(87,90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(104,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(106,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(108,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Image.h(110,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(48,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(14,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(78,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(88,90): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(105,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(107,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(109,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(111,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Image.h(151,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Matrix_tests.cpp
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix_tests.cpp(42,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Matrix_tests.cpp(54,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(21,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(45,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(46,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(49,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix.h(50,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix_tests.cpp(42,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\cthomas\Documents\Projects\battery-recognition\Matrix_tests.cpp(54,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   unit_test_framework.cpp
   Generating Code...
-Image_tests.obj : error LNK2005: _main already defined in Battery-Recognition.obj
-Matrix_tests.obj : error LNK2005: _main already defined in Battery-Recognition.obj
-C:\Users\cthomas\Documents\Projects\Battery-Recognition\Debug\cv.exe : fatal error LNK1169: one or more multiply defined symbols found

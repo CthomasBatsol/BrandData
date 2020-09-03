@@ -8,7 +8,7 @@
 
 class Image {
 public:
-	Image(char* filename)
+	Image(const char* filename)
 	{
 		
 		FILE* f = fopen(filename, "rb");

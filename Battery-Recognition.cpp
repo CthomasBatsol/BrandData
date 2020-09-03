@@ -22,10 +22,10 @@ namespace fs = std::filesystem;
 * 5. Write battery brand data to a file                                     *
 *                                                                           *
 ****************************************************************************/
-
-void construct_training(const fs::path& pathToShow, Image*& img, multimap<string,Image*>& data, multimap<char*,Image*> locations, char arr[]) {
+void construct_training(const fs::path& pathToShow, Image*& img, multimap<string,Image*>& data, multimap<string, string>& locations, char arr[]) {
     string begin = arr;
     string end;
+    
 
     for (const auto& entry : fs::directory_iterator(pathToShow)) {
         const auto foldernameStr = entry.path().filename().string();
@@ -44,9 +44,10 @@ void construct_training(const fs::path& pathToShow, Image*& img, multimap<string
             char* bmp = new char[begin.length() + filenameStr.length() + 1];
             end = begin + filenameStr;
             strcpy(bmp, end.c_str());
+            
             img = new Image(bmp);
             data.insert(pair<string, Image*>(folder, img));
-            locations.insert(pair<char*, Image*>(bmp, img));
+            locations.insert(pair<string, string>(folder,bmp));
 
             delete[] bmp;
         }
@@ -69,11 +70,14 @@ int main(int argc, char* argv[])
     const fs::path pathToShow{ argc >= 2 ? argv[1] : fs::current_path() };
     Image* img = NULL;
     Image* test = new Image(argv[2]);
-    nnda classify;
     multimap<string, Image*> data;
-    multimap<char*, Image*> locations;
+    multimap<string, string> locations;
 
     construct_training(pathToShow, img, data, locations, argv[1]);
+    nnda classify(data, locations);
+    classify.nnda_neighbors(test);
+    classify.nnda_distances();
+    classify.print();
 
     delete test;
     return 0;
