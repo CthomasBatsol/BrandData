@@ -103,6 +103,7 @@
     <ClCompile Include="Battery-Recognition.cpp" />
     <ClCompile Include="Image_tests.cpp" />
     <ClCompile Include="Matrix_tests.cpp" />
+    <ClCompile Include="nnda_tests.cpp" />
     <ClCompile Include="unit_test_framework.cpp" />
   </ItemGroup>
   <ItemGroup>

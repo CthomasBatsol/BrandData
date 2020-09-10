@@ -27,6 +27,9 @@
     <ClCompile Include="unit_test_framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nnda_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">

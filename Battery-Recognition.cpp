@@ -59,7 +59,11 @@ void construct_training(const fs::path& pathToShow, Image*& img, multimap<string
     
 }
  
-
+void destroy(multimap<string, Image*>& data) {
+    for (multimap<string, Image*>::iterator itr = data.begin(); itr != data.end(); itr++) {
+        delete itr->second;
+    }
+}
 
 
 
@@ -80,6 +84,7 @@ int main(int argc, char* argv[])
     classify.print();
 
     delete test;
+    destroy(data);
     return 0;
 }
 
