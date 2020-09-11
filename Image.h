@@ -23,6 +23,7 @@ public:
 		height = *(int*)&info[22];
 		mat = new Matrix(width, height);
 		dct_mat = new Matrix(width / 3, height);
+		dct_transpose = new Matrix(width / 3, height);
 
 		// allocate 3 bytes per pixel
 		int size = width * height;
@@ -84,7 +85,7 @@ public:
 		}
 
 		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j+=3) {
+			for (int j = 0; j < width; j += 3) {
 				value = (mat->Matrix_at(j, i) + mat->Matrix_at(j + 1, i) + mat->Matrix_at(j + 2, i)) / 3;
 				average[j][i] = value;
 			}
@@ -94,6 +95,7 @@ public:
 			for (int j = 0; j < width; j++) {
 				if (j % 3 == 0) {
 					dct_mat->Matrix_fill(j / 3, i, average[j][i]);
+					dct_transpose->Matrix_fill(j / 3, i, average[j][i]);
 				}
 			}
 		}
@@ -119,7 +121,8 @@ public:
 						sum = sum + dct1;
 					}
 				}
-				dct_mat->Matrix_fill(j,i,ci*cj*sum);
+				dct_mat->Matrix_fill(j, i, ci * cj * sum);
+				//dct_transpose->Matrix_fill(i, j, ci * cj * sum);
 			}
 		}
 		
@@ -149,8 +152,8 @@ public:
 
 	void fill(int column,int row,int value) {
 		dct_mat->Matrix_fill(column, row, value);
+		dct_transpose->Matrix_fill(row, column, value);
 	}
-	
 
 	void Image_write(std::ofstream& output, std::string& name) {
 		output.open(name);
@@ -205,7 +208,18 @@ public:
 		}
 	}
 	
-	
+	void Image_print_transpose() {
+
+		for (int i = 0; i < 16; i++) {
+			std::cout << "[ ";
+			for (int j = 0; j < 16; j += 4) {
+				std::cout << dct_transpose->Matrix_at(j, i) << " " << dct_transpose->Matrix_at(j + 1, i) << " " << dct_transpose->Matrix_at(j + 2, i) << " " << dct_transpose->Matrix_at(j + 3, i) << " ";
+			}
+
+			std::cout << "]" << std::endl;
+		}
+	}
+
 	void Image_size() {
 		std::cout <<"Width: " << mat->Column_count() << std::endl;
 		std::cout << "Height: " << mat->Row_count() << std::endl;
@@ -239,6 +253,7 @@ private:
 	int height;
 	Matrix* mat;
 	Matrix* dct_mat;
+	Matrix* dct_transpose;
 	
 
 };

@@ -58,6 +58,13 @@ void construct_training(const fs::path& pathToShow, Image*& img, multimap<string
     }
     
 }
+
+void train(nnda& classifier,Image*& test) {
+    classifier.nnda_neighbors(test);
+    classifier.nnda_distances();
+    classifier.nnda_scatter_matrices();
+    //classifier.print();
+}
  
 void destroy(multimap<string, Image*>& data) {
     for (multimap<string, Image*>::iterator itr = data.begin(); itr != data.end(); itr++) {
@@ -79,9 +86,7 @@ int main(int argc, char* argv[])
 
     construct_training(pathToShow, img, data, locations, argv[1]);
     nnda classify(data, locations);
-    classify.nnda_neighbors(test);
-    classify.nnda_distances();
-    classify.print();
+    train(classify, test);
 
     delete test;
     destroy(data);

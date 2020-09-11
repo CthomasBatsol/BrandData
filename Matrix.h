@@ -11,9 +11,11 @@ public:
 	Matrix(int column_count, int row_count) :
 		width(column_count), height(row_count)
 	{
-		 data = new float*[width];
-		 for (int i = 0; i < width; i++)
+		 data = new float* [width];		 
+		 for (int i = 0; i < width; i++) {
 			 data[i] = new float[height];
+		 }
+
 	}
 
 
@@ -25,7 +27,6 @@ public:
 		data[column][row] = value;
 	}
 
-	
 	void Print_matrix() {
 		int count = 1;
 		for (int i = 0; i < height; i++) {
@@ -36,7 +37,6 @@ public:
 			std::cout << std::endl;
 			count++;
 		}
-		
 	}
 
 	void Matrix_fill_border(int value) {
@@ -52,8 +52,6 @@ public:
 		
 	}
 
-
-
 	int Column_count() {
 		return width;
 	}
@@ -63,8 +61,9 @@ public:
 	}
 
 	~Matrix() {
-		for (int i = 0; i < width; i++)
- 			delete[] data[i];
+		for (int i = 0; i < width; i++) {
+			delete[] data[i];
+		}
 		
 		delete[] data;
 	}

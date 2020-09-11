@@ -11,19 +11,13 @@ class nnda {
 public:
     
     nnda(std::multimap<std::string, Image*>& map_in, std::multimap<std::string, std::string>& brands_in) {
-        //std::multimap<std::string, std::string>::iterator itr_2 = brands_in.begin();
-        
-        
         for (std::multimap<std::string, Image*>::iterator itr = map_in.begin(); itr != map_in.end(); itr++) {
-            /*char* folder = new char[itr_2->second.length() + 1];
-            strcpy(folder, itr_2->second.c_str());
-            itr->second = new Image(folder);*/
+            
             itr->second->Image_DCT();
             data_1.insert(std::pair<std::string, Image*>(itr->first, itr->second));
             data_2.insert(std::pair<std::string, Image*>(itr->first, itr->second));
             data_3.insert(std::pair<std::string, Image*>(itr->first, itr->second));
-            //tracker.push_back(itr->second);
-            //++itr_2;
+            
         }
 
         for (std::multimap<std::string, std::string>::iterator itr_1 = brands_in.begin(); itr_1 != brands_in.end(); itr_1++) {
@@ -115,21 +109,24 @@ public:
         }
     }
 
+    void nnda_scatter_matrices() {
+        std::multimap<std::string, Image*>::iterator itr_data_1 = data_1.begin();
+        //std::multimap<std::string, Image*>::iterator itr_data_2 = data_2.begin();
+
+        std::cout << itr_data_1->first << ": " << std::endl;
+        itr_data_1->second->Image_print_dct();
+        std::cout << std::endl;
+        itr_data_1->second->Image_print_transpose();
+    }
+
+
     void print() {
         std::multimap<std::string, Image*>::iterator itr_data_1 = data_1.begin();
         std::multimap<std::string, Image*>::iterator itr_data_2 = data_2.begin();
-        /*std::multimap<float, std::string>::iterator itr_values = values.begin();
-        std::multimap<std::string, float>::iterator itr_intra = intraClass.begin();
-        std::multimap<std::string, std::string>::iterator itr_brands = brand_info.begin();
-        std::multimap<Image*, std::string>::iterator itr_delta_E = delta_E.begin();
-        std::multimap<std::string, float>::iterator itr_extra = extraClass.begin();*/
-        //std::multimap<std::string, Image*>::iterator itr_delta_I = delta_I.begin();
         
         int count = 0;
         while (itr_data_1 != data_1.end() && itr_data_2 != data_2.end()) {
-            
-            ++itr_data_1;
-            ++itr_data_2;
+           
             std::cout << "Delta_I: ";
             std::cout << itr_data_1->first << "\n";
             itr_data_1->second->Image_print_dct();
@@ -141,8 +138,8 @@ public:
             std::cout << std::endl << std::endl;
             
             ++count;
-            itr_data_1 = data_1.end();
-            itr_data_2 = data_2.end();
+            ++itr_data_1;
+            ++itr_data_2;
        }
         std::cout << count << std::endl;
     }
